@@ -5,9 +5,5 @@ applications:
   random-route: true
   path: build/libs/spring-music-1.0.jar
   env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
 #    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
-     #JAVA_OPTS: '-Djavax.net.ssl.TrustStore=resources/config/PublicKey'
-     SPRING_PROFILES_ACTIVE: cloudfoundry
-     JAVA_OPTS: '-Djavax.net.debug=all -Djavax.net.ssl.trustStore=/home/vcap/app/BOOT-INF/classes/jssecacerts'
-     #JAVA_OPTS: '-Djavax.net.debug=all -Djavax.net.ssl.trustStore=classpath:resources/jssecacerts' (This doesn't work)
-
