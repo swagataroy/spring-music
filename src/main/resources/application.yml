@@ -1,3 +1,4 @@
+logging.level.org.springframework: DEBUG
 spring:
   jpa:
     generate-ddl: true
@@ -8,18 +9,22 @@ management:
       exposure:
         include: "*"
 
+logging:
+  file: ${logging.path}/root.log
+  path: /Users/sroy/git/spring-music/logs
 ---
 spring:
   profiles: mysql
   datasource:
-    url: "jdbc:mysql://localhost/music"
-    driver-class-name: com.mysql.jdbc.Driver
-    username:
-    password: 
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL55Dialect
+    url: ${vcap.services.mysql.credentials.jdbcUrl}
+    username: ${vcap.services.mysql.credentials.username}
+    password: ${vcap.services.mysql.credentials.password}
+---
+spring:
+  profiles: cloudfoundry
+  data:
+    mongodb:
+      url: ${vcap.services.swagata-mongo-db.credentials.uri}
 
 ---
 spring:
@@ -33,3 +38,4 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.ProgressDialect
+
